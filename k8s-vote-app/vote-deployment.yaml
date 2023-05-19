@@ -4,6 +4,9 @@ metadata:
   name: vote
 spec:
   replicas: 1
+  selector:
+    matchLabels:
+      app: vote
   template:
     metadata:
       labels:

@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: result
+  name: result-svc
 spec:
   type: ClusterIP
   ports:

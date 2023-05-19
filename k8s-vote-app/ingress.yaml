@@ -21,7 +21,7 @@ spec:
     http:
       paths:
       # - path: /
-        backend:
+      - backend:
           service:
             name: vote
             port:
@@ -38,7 +38,7 @@ spec:
     http:
       paths:
       # - path: /
-        backend:
+      - backend:
           service:
             name: result
             port:

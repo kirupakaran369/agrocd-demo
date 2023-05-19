@@ -3,9 +3,9 @@ kind: Service
 metadata:
   name: result-svc
 spec:
-  type: ClusterIP
+  type: NodePort
   ports:
-  - name: "result-service"
+  # - name: "result-service"
     port: 5001
     targetPort: 80
     # nodePort: 31001

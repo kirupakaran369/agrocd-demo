@@ -5,12 +5,12 @@ metadata:
   name: knote
 ---
 
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: knote-env
-  namespace: knote
-data:
-  MONGO_URL: 'mongodb://mongo:27017/dev'
+# apiVersion: v1
+# kind: ConfigMap
+# metadata:
+#   name: knote-env
+#   namespace: knote
+# data:
+#   MONGO_URL: 'mongodb://mongo:27017/dev'
 
 

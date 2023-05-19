@@ -19,13 +19,15 @@ spec:
           image: learnitguide/knotejs:1.0
           ports:
             - containerPort: 3000
+          # env:
+          #   - name: MONGO_URL
+          #     valueFrom:
+          #       configMapKeyRef:
+          #         name: knote-env
+          #         key: MONGO_URL
           env:
             - name: MONGO_URL
-              valueFrom:
-                configMapKeyRef:
-                  name: knote-env
-                  key: MONGO_URL
-
+              value: mongodb://mongo:27017/dev          
 ---
 apiVersion: v1
 kind: Service
@@ -39,5 +41,5 @@ spec:
     - protocol: 'TCP'
       port: 80
       targetPort: 3000
-      nodePort: 30000
-  type: NodePort
+      # nodePort: 30000
+  type: ClusterIP

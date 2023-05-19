@@ -15,6 +15,9 @@ spec:
       containers:
       - image: postgres:11-alpine
         name: db
+        env:
+        - name: POSTGRES_PASSWORD
+          value: postgres
         volumeMounts:
         - mountPath: /var/lib/postgresql/data
           name: db-data

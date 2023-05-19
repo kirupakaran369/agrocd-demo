@@ -1,0 +1,43 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: knote-deployment
+  namespace: knote
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: knote-app
+  template:
+    metadata:
+      labels:
+        app: knote-app
+    spec:
+      containers:
+        - name: knote-container
+          image: learnitguide/knotejs:1.0
+          ports:
+            - containerPort: 3000
+          env:
+            - name: MONGO_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: knote-env
+                  key: MONGO_URL
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: knote-svc
+  namespace: knote
+spec:
+  selector:
+    app: knote-app
+  ports:
+    - protocol: 'TCP'
+      port: 80
+      targetPort: 3000
+      nodePort: 30000
+  type: NodePort

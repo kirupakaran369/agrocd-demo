@@ -20,7 +20,7 @@ spec:
   - host: vote.pcf.asgardmap.net
     http:
       paths:
-      - path: /vote
+      - path: /vote(.*)
         pathType: Prefix
         backend:
           service:
@@ -31,7 +31,7 @@ spec:
   - host: result.pcf.asgardmap.net
     http:
       paths:
-      - path: /result
+      - path: /result(.*)
         pathType: Prefix
         backend:
           service:

@@ -55,6 +55,7 @@ spec:
     - http:
         paths:
           - path: /*
+            pathType: Prefix
             backend:
               serviceName: service-2048
               servicePort: 80

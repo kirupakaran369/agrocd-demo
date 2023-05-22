@@ -83,4 +83,5 @@ spec:
     apiVersion: extensions/v1beta1
     kind: Deployment
     name: deployment-2048
+    namespace: game-2048
   targetCPUUtilizationPercentage: 20

@@ -13,11 +13,11 @@ spec:
         app: db
     spec:
       containers:
-      - image: postgres:11-alpine
+      - image: postgres:9.4
         name: db
-        env:
-        - name: POSTGRES_PASSWORD
-          value: postgres
+        # env:
+        # - name: POSTGRES_PASSWORD
+        #   value: postgres
         volumeMounts:
         - mountPath: /var/lib/postgresql/data
           name: efs-data

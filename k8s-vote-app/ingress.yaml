@@ -1,41 +1,42 @@
-# apiVersion: networking.k8s.io/v1
-# kind: Ingress
-# metadata:
-#   name: demo-ingress
-#   namespace: default
-#   annotations:
-#     alb.ingress.kubernetes.io/load-balancer-name: demo-alb
-#     alb.ingress.kubernetes.io/scheme: internet-facing
-#     alb.ingress.kubernetes.io/target-type: ip
-#     alb.ingress.kubernetes.io/subnets: subnet-05856e4871f8ce760, subnet-082b685d66363a4a0
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: demo-ingress
+  namespace: default
+  annotations:
+    alb.ingress.kubernetes.io/load-balancer-name: demo-alb
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/target-type: ip
+    kubernetes.io/ingress.class: alb
+    alb.ingress.kubernetes.io/subnets: subnet-05856e4871f8ce760, subnet-082b685d66363a4a0
 #     alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:eu-west-1:600167738142:certificate/3fcecbf7-dcf4-488b-92ec-ff02b95534fd
 #     alb.ingress.kubernetes.io/security-groups: sg-0b05867cd639807e4
 #     # alb.ingress.kubernetes.io/backend-protocol: HTTPS
 #     # alb.ingress.kubernetes.io/conditions.argogrpc: |
 #     #   [{"field":"http-header","httpHeaderConfig":{"httpHeaderName": "Content-Type", "values":["application/grpc"]}}]
 #     # alb.ingress.kubernetes.io/listen-ports: '[{"HTTPS":443}]'
-# spec:
-#   ingressClassName: alb
-#   rules:
-#   - host: vote.pcf.asgardmap.net
-#     http:
-#       paths:
-#       - path: /vote(.*)
-#         pathType: Prefix
-#         backend:
-#           service:
-#             name: vote
-#             port:
-#               number: 5000
+spec:
+  ingressClassName: alb
+  rules:
+  - host: vote.pcf.asgardmap.net
+    http:
+      paths:
+      - path: /vote
+        pathType: Prefix
+        backend:
+          service:
+            name: vote
+            port:
+              number: 5000
 
-#   - host: result.pcf.asgardmap.net
-#     http:
-#       paths:
-#       - path: /result(.*)
-#         pathType: Prefix
-#         backend:
-#           service:
-#             name: result
-#             port:
-#               number: 5001
+  - host: result.pcf.asgardmap.net
+    http:
+      paths:
+      - path: /result
+        pathType: Prefix
+        backend:
+          service:
+            name: result
+            port:
+              number: 5001
         

@@ -17,7 +17,8 @@ spec:
         name: redis
         volumeMounts:
         - mountPath: /data
-          name: redis-data
+          name: efs-vol
       volumes:
-      - name: redis-data
-        emptyDir: {} 
+      - name: efs-vol
+        persistentVolumeClaim: 
+          claimName: efs-pvc

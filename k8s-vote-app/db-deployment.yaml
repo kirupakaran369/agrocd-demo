@@ -20,7 +20,8 @@ spec:
           value: postgres
         volumeMounts:
         - mountPath: /var/lib/postgresql/data
-          name: db-data
+          name: efs-data
       volumes:
-      - name: db-data
-        emptyDir: {} 
+      - name: efs-data
+        persistentVolumeClaim: 
+          claimName: efs-pvc

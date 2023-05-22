@@ -13,7 +13,7 @@ spec:
   selector:
     matchLabels:
       app.kubernetes.io/name: app-2048
-  replicas: 5
+  replicas: 1
   template:
     metadata:
       labels:
@@ -25,6 +25,11 @@ spec:
         name: app-2048
         ports:
         - containerPort: 80
+        resources:
+          limits:
+            cpu: 500m
+          requests:
+            cpu: 200m
 ---
 apiVersion: v1
 kind: Service
@@ -64,3 +69,18 @@ spec:
 #             # backend:
 #             #   serviceName: service-2048
 #             #   servicePort: 80
+
+---
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: 2048-autoscaler
+  namespace: game-2048
+spec:
+  maxReplicas: 10
+  minReplicas: 1
+  scaleTargetRef:
+    apiVersion: extensions/v1beta1
+    kind: Deployment
+    name: deployment-2048
+  targetCPUUtilizationPercentage: 20

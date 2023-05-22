@@ -59,8 +59,8 @@ spec:
             backend:
               service:
                 name: service-2048
-              port:
-                number: 80           
+                port:
+                  number: 80           
             # backend:
             #   serviceName: service-2048
             #   servicePort: 80

@@ -1,3 +1,11 @@
+# ---
+# apiVersion: v1
+# kind: Secret
+# metadata:
+#   name: argocd-github-secret
+#   namespace: argocd
+# stringData:
+#   token: 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
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: AppProject
@@ -6,7 +14,7 @@ metadata:
   namespace: argocd
 spec:
   sourceRepos:
-  - https://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@github.com/kirupakaran369/agrocd-demo.git
+  - https://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@github.com/kirupakaran369/agrocd-demo.git
   destinations:
   - namespace: argocd
     server: https://kubernetes.default.svc
@@ -24,9 +32,16 @@ metadata:
 spec:
   project: project-alpha
   source:
-    repoURL: https://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@github.com/kirupakaran369/agrocd-demo.git
+    repoURL: https://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@github.com/kirupakaran369/agrocd-demo.git
     targetRevision: master
     path: Application/Jenkins
   destination:
     server: https://kubernetes.default.svc
     namespace: jenkins
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+  # sourceSecret:
+  #   name: argocd-github-secret
+  #   namespace: argocd

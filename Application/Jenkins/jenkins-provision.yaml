@@ -1,37 +1,37 @@
-apiVersion: karpenter.sh/v1alpha5
-kind: Provisioner
-metadata:
-  name: jenkins-provisioner
-  namespace: jenkins
-spec:
-  consolidation:
-    enabled: true
-  ttlSecondsUntilExpired: 2592000
-  providerRef:
-    name: default
-  requirements:
-  - key: karpenter.sh/capacity-type  # If not included, the webhook for the AWS cloud provider will default to on-demand
-    operator: In
-    values: ["spot", "on-demand"]
-  - key: kubernetes.io/arch
-    operator: In
-    values: amd64
-  - key: kubernetes.io/os
-    operator: In
-    values: linux
-  taints:
-  - key: game2048-cluster
-    effect: NoSchedule
+# apiVersion: karpenter.sh/v1alpha5
+# kind: Provisioner
+# metadata:
+#   name: jenkins-provisioner
+#   namespace: jenkins
+# spec:
+#   consolidation:
+#     enabled: true
+#   ttlSecondsUntilExpired: 2592000
+#   providerRef:
+#     name: default
+#   requirements:
+#   - key: karpenter.sh/capacity-type  # If not included, the webhook for the AWS cloud provider will default to on-demand
+#     operator: In
+#     values: ["spot", "on-demand"]
+#   - key: kubernetes.io/arch
+#     operator: In
+#     values: amd64
+#   - key: kubernetes.io/os
+#     operator: In
+#     values: linux
+#   taints:
+#   - key: game2048-cluster
+#     effect: NoSchedule
 
----
-apiVersion: karpenter.k8s.aws/v1alpha1
-kind: AWSNodeTemplate
-metadata:
-  name: jenkisnodetemplate
-spec:
-  amiFamily: AL2
-  subnetSelector:
-    karpenter.sh/discovery/game2048-cluster: '*'
-  securityGroupSelector:
-    karpenter.sh/discovery/game2048-cluster: '*'
+# ---
+# apiVersion: karpenter.k8s.aws/v1alpha1
+# kind: AWSNodeTemplate
+# metadata:
+#   name: jenkisnodetemplate
+# spec:
+#   amiFamily: AL2
+#   subnetSelector:
+#     karpenter.sh/discovery/game2048-cluster: '*'
+#   securityGroupSelector:
+#     karpenter.sh/discovery/game2048-cluster: '*'
 

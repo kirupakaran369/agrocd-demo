@@ -8,7 +8,7 @@ spec:
     enabled: true
   ttlSecondsUntilExpired: 2592000
   providerRef:
-    name: jenkins-awsnodetemplate
+    name: default
   requirements:
   - key: "karpenter.sh/capacity-type" # If not included, the webhook for the AWS cloud provider will default to on-demand
     operator: In

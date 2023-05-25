@@ -32,5 +32,6 @@ spec:
   amiFamily: AL2
   subnetSelector:
     karpenter.sh/discovery/game2048-cluster: '*'
-
+  securityGroupSelector:
+    karpenter.sh/discovery/game2048-cluster: '*'
 

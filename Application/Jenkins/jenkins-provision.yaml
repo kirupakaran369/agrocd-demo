@@ -1,25 +1,25 @@
-apiVersion: karpenter.sh/v1alpha5
-kind: Provisioner
-metadata:
-  name: default
-spec:
-  requirements:
-    - key: karpenter.k8s.aws/instance-category
-      operator: In
-      values: [c, m, r]
-    - key: karpenter.k8s.aws/instance-generation
-      operator: Gt
-      values: ["2"]
-  providerRef:
-    name: default
-  ttlSecondsAfterEmpty: 30
----
-apiVersion: karpenter.k8s.aws/v1alpha1
-kind: AWSNodeTemplate
-metadata:
-  name: default
-spec:
-  subnetSelector:
-    karpenter.sh/discovery: "game2048-cluster"
-  securityGroupSelector:
-    karpenter.sh/discovery: "game2048-cluster"
+# apiVersion: karpenter.sh/v1alpha5
+# kind: Provisioner
+# metadata:
+#   name: default
+# spec:
+#   requirements:
+#     - key: karpenter.k8s.aws/instance-category
+#       operator: In
+#       values: [c, m, r]
+#     - key: karpenter.k8s.aws/instance-generation
+#       operator: Gt
+#       values: ["2"]
+#   providerRef:
+#     name: default
+#   ttlSecondsAfterEmpty: 30
+# ---
+# apiVersion: karpenter.k8s.aws/v1alpha1
+# kind: AWSNodeTemplate
+# metadata:
+#   name: default
+# spec:
+#   subnetSelector:
+#     karpenter.sh/discovery: "game2048-cluster"
+#   securityGroupSelector:
+#     karpenter.sh/discovery: "game2048-cluster"

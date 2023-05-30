@@ -10,7 +10,7 @@ spec:
   destinations:
   - namespace: argocd
     server: https://kubernetes.default.svc
-  - namespace: affinityns
+  - namespace: default
     server: https://kubernetes.default.svc
   clusterResourceWhitelist:
   - group: '*'
@@ -29,7 +29,7 @@ spec:
     path: Application/Karpenter
   destination:
     server: https://kubernetes.default.svc
-    namespace: affinityns
+    namespace: default
   syncPolicy:
     automated:
       prune: true

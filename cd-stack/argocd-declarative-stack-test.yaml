@@ -29,7 +29,7 @@ spec:
     path: Application/Karpenter
   destination:
     server: https://kubernetes.default.svc
-    namespace: affinity
+    namespace: affinityns
   syncPolicy:
     automated:
       prune: true

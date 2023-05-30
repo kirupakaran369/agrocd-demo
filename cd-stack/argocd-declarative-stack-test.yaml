@@ -28,8 +28,10 @@ spec:
     targetRevision: master
     path: Application/Karpenter
   destination:
-    server: https://kubernetes.default.svc
+  - server: https://kubernetes.default.svc
     namespace: default
+  - server: https://kubernetes.default.svc
+    namespace: affinity
   syncPolicy:
     automated:
       prune: true

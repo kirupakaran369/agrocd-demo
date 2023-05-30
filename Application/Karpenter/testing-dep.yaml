@@ -21,3 +21,85 @@
 #             requests:
 #               cpu: 1
 #               memory: 1.5Gi
+
+---
+apiVersion: v1
+kind: namespace
+metadata:
+  name: affinity
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: example-deployment
+  namespace: affinity
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: example-app
+  template:
+    metadata:
+      labels:
+        app: example-app
+    spec:
+      containers:
+      - name: example-container
+        image: public.ecr.aws/eks-distro/kubernetes/pause:3.2
+        # Add container configuration here
+        
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: node
+                operator: In
+                values:
+                - workernode1
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: example-deployment
+  namespace: affinity
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: example-app
+  template:
+    metadata:
+      labels:
+        app: example-app
+    spec:
+      containers:
+      - name: example-container
+        image: public.ecr.aws/eks-distro/kubernetes/pause:3.2
+        # Add container configuration here
+        
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: node
+                operator: In
+                values:
+                - workernode2
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: example-svc
+  namespace: affinity
+spec:
+  selector:
+    app: example-app
+  type: ClusterIP
+  ports:
+    - protocol: 'TCP'
+      targetPort: 80
+      port: 8088

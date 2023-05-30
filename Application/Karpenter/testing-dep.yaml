@@ -21,15 +21,6 @@ spec:
             requests:
               cpu: 1
               memory: 1.5Gi
-      affinity:
-        nodeAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-            nodeSelectorTerms:
-            - matchExpressions:
-              - key: node
-                operator: In
-                values:
-                - workernode3
 
 # ---
 # apiVersion: v1

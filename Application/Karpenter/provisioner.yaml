@@ -20,6 +20,8 @@ spec:
   ttlSecondsUntilExpired: 2592000
   providerRef:
     name: default
+  labels:
+    node: workernode3
 ---
 apiVersion: karpenter.k8s.aws/v1alpha1
 kind: AWSNodeTemplate
@@ -34,4 +36,4 @@ spec:
     KarpenerProvisionerName: "default"
     NodeType: "karpenter-workshop"
     IntentLabel: "apps"
-    node: workernode3
+    # node: workernode3

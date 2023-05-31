@@ -28,8 +28,8 @@ spec:
     targetRevision: master
     path: Application/Karpenter
   destination: 
-    server: https://kubernetes.default.svc
     namespace: demo
+    server: https://kubernetes.default.svc
   syncPolicy:
     automated:
       prune: true

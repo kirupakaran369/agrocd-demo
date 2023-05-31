@@ -10,7 +10,7 @@ spec:
   destinations:
   - namespace: argocd
     server: https://kubernetes.default.svc
-  - namespace: default
+  - namespace: demo
     server: https://kubernetes.default.svc
   clusterResourceWhitelist:
   - group: '*'
@@ -27,9 +27,9 @@ spec:
     repoURL: https://github.com/kirupakaran369/agrocd-demo.git
     targetRevision: master
     path: Application/Karpenter
-  destination:
+  destination: demo
     server: https://kubernetes.default.svc
-    namespace: default
+    namespace: 
   syncPolicy:
     automated:
       prune: true

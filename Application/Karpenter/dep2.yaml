@@ -1,30 +1,29 @@
-# ---
-# apiVersion: apps/v1
-# kind: Deployment
-# metadata:
-#   name: example-deployment1
-#   namespace: affinityns
-# spec:
-#   replicas: 1
-#   selector:
-#     matchLabels:
-#       app: example-app
-#   template:
-#     metadata:
-#       labels:
-#         app: example-app
-#     spec:
-#       containers:
-#       - name: example-container
-#         image: public.ecr.aws/eks-distro/kubernetes/pause:3.2
-#         # Add container configuration here
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: example-deployment1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: example-app
+  template:
+    metadata:
+      labels:
+        app: example-app
+    spec:
+      containers:
+      - name: example-container
+        image: public.ecr.aws/eks-distro/kubernetes/pause:3.2
+        # Add container configuration here
         
-#       affinity:
-#         nodeAffinity:
-#           requiredDuringSchedulingIgnoredDuringExecution:
-#             nodeSelectorTerms:
-#             - matchExpressions:
-#               - key: node
-#                 operator: In
-#                 values:
-#                 - workernode2
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: node
+                operator: In
+                values:
+                - workernode2

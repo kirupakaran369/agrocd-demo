@@ -10,7 +10,7 @@ metadata:
   name: example-deployment1
   namespace: demo
 spec:
-  replicas: 1
+  replicas: 0
   selector:
     matchLabels:
       app: example-app

@@ -12,6 +12,8 @@ spec:
     server: https://kubernetes.default.svc
   - namespace: demo
     server: https://kubernetes.default.svc
+  - namespace: default
+    server: https://kubernetes.default.svc
   clusterResourceWhitelist:
   - group: '*'
     kind: '*'
@@ -28,8 +30,10 @@ spec:
     targetRevision: master
     path: Application/Karpenter
   destination: 
-    server: https://kubernetes.default.svc
+  - server: https://kubernetes.default.svc
     namespace: demo
+  - namespace: default
+    server: https://kubernetes.default.svc
   syncPolicy:
     automated:
       prune: true

@@ -27,9 +27,9 @@ spec:
     repoURL: https://github.com/kirupakaran369/agrocd-demo.git
     targetRevision: master
     path: Application/Karpenter
-  destination: demo
+  destination: 
     server: https://kubernetes.default.svc
-    namespace: 
+    namespace: demo
   syncPolicy:
     automated:
       prune: true

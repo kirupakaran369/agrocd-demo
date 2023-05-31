@@ -11,7 +11,7 @@ spec:
   - namespace: argocd
     server: https://kubernetes.default.svc
   - namespace: demo
-    server: https://kubernetes.default.svc-
+    server: https://kubernetes.default.svc
   clusterResourceWhitelist:
   - group: '*'
     kind: '*'

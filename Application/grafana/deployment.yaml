@@ -14,6 +14,6 @@ spec:
         app: grafana
     spec:
       containers:
-        - image: public.ecr.aws/bitnami/grafana:latest
-          ports:
-          - containerPort: 3000
+      - image: public.ecr.aws/bitnami/grafana:latest
+        ports:
+        - containerPort: 3000

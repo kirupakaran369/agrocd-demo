@@ -1,7 +1,7 @@
 # apiVersion: networking.k8s.io/v1
 # kind: Ingress
 # metadata:
-#   namespace: jenkins
+#   namespace: devops-tools
 #   name: ingress-jenkins
 #   annotations:
 #     kubernetes.io/ingress.class: alb
@@ -16,6 +16,6 @@
 #             pathType: Prefix
 #             backend:
 #               service:
-#                 name: jenkins-svc
+#                 name: jenkins-service
 #                 port:
 #                   number: 5000

@@ -49,6 +49,8 @@ resource "aws_subnet" "db" {
   cidr_block        = var.db_subnet_cidr_blocks[count.index]
   availability_zone = var.availability_zones[count.index]
 
+
+
   tags = merge(
     {
       Name        = "${var.environment}-${var.application}-db-subnet-${count.index}",

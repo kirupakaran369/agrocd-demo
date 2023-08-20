@@ -1,30 +1,4 @@
-# # ---
-# # apiVersion: secrets-store.csi.x-k8s.io/v1
-# # kind: SecretProviderClass
-# # metadata:
-# #   name: aws-secrets
-# #   namespace: wordpress
-# # spec:
-# #   provider: aws
-# #   parameters: 
-# #     objects: |
-# #       - objectName: "DBSecret"
-# #         objectType: "secretsmanager"
-# #         jmesPath:
-# #           - path: username
-# #             objectAlias: dbhost
-# #           - path: password
-# #             objectAlias: dbpassword
-# #   # Create k8s secret. It requires volume mount first in the pod and then sync.
-# #   secretObjects:                
-# #     - secretName: mysql-secert
-# #       type: Opaque
-# #       data:
-# #         #- objectName: <objectName> or <objectAlias> 
-# #         - objectName: dbhost
-# #           key: dbhost
-# #         - objectName: dbpassword
-# #           key: dbpassword
+
 
 # # ####> parmeter store : will mount it as a voulume inside your pod. if you want to use volume in dep you can use ssm-paramater
 # # #####> secrets manager type will provide you a capbility to use it as an environment variables, if you want to use env in dep you can use the secerts manager
@@ -44,7 +18,7 @@
 #           key: password
 #   parameters:
 #     objects: |
-#       - objectName: arn:aws:secretsmanager:eu-west-1:600167738142:secret:DBSecret-HJ7vBp
+#       - objectName: arn:aws:secretsmanager:eu-west-1:
 #         jmesPath:
 #             - path: "dbhost"
 #               objectAlias: "dbhost"

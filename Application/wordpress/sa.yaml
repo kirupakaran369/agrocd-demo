@@ -3,4 +3,4 @@
 # metadata:
 #   name: secret-manager-service-account
 #   annotations:
-#     eks.amazonaws.com/role-arn: arn:aws:iam::600167738142:role/16436_test_system_manager_ec2_full_access
+#     eks.amazonaws.com/role-arn: arn:aws:iam:

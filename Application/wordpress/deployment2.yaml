@@ -63,16 +63,16 @@ spec:
             periodSeconds: 10
             timeoutSeconds: 5
             failureThreshold: 3
-          volumeMounts: 
-            - name: wordpress-file
-              mountPath: /var/www/html
-            # - name: secrets-store-inline
-            #   mountPath: "/mnt/secrets-store"
-            #   readOnly: true
-      volumes:
-        - name: wordpress-file
-          persistentVolumeClaim:
-              claimName: efs-pvc
+      #     volumeMounts: 
+      #       - name: wordpress-file
+      #         mountPath: /var/www/html
+      #       # - name: secrets-store-inline
+      #       #   mountPath: "/mnt/secrets-store"
+      #       #   readOnly: true
+      # volumes:
+      #   - name: wordpress-file
+      #     persistentVolumeClaim:
+      #         claimName: efs-pvc
         # - name: secrets-store-inline
         #   csi:
         #     driver: secrets-store.csi.k8s.io

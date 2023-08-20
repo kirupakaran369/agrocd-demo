@@ -17,6 +17,7 @@ spec:
       #       fsGroup: 1000
       #       runAsUser: 0
       # serviceAccountName: wordpress-sa
+      serviceAccountName: secret-manager-service-account
       containers:
         - name: wordpress-container-1
           image: wordpress:latest

@@ -187,3 +187,12 @@ managedNodeGroups:
 ###https://docs.aws.amazon.com/systems-manager/latest/userguide/integrating_csi_driver.html is document used to install secerts (ssm-parameter), add ssm full access to the nodes
 
 ##{"host":"deleteme.czacpbvgfcja.eu-west-1.rds.amazonaws.com","password": "admin"}
+
+# kubectl edit cm aws-auth -n kube-system (kubectl get clusterrole)
+
+#     - groups:
+#       - system:masters
+#       rolearn: arn:aws:iam::
+#       username: admin
+
+# edit and save it

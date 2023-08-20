@@ -1,10 +1,10 @@
-# ---
-# apiVersion: v1
-# kind: Secret
-# metadata:
-#   name: mysql-secret
-#   namespace: wordpress
-# type: Opaque
-# data:
-#   password: YWRtaW4xMjM=
-#   host: ZGVsZXRlbWUuY3phY3BidmdmY2phLmV1LXdlc3QtMS5yZHMuYW1hem9uYXdzLmNvbQ==
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: mysql-secret
+  namespace: wordpress
+type: Opaque
+data:
+  password: YWRtaW4xMjM=
+  host: ZGVsZXRlbWUuY3phY3BidmdmY2phLmV1LXdlc3QtMS5yZHMuYW1hem9uYXdzLmNvbQ==

@@ -65,7 +65,12 @@ spec:
           volumeMounts: 
             - name: wordpress-file
               mountPath: /var/www/html
+          volumeMounts:
+            - name: secrets-store-inline
+              mountPath: "/mnt/secrets-store"
+              readOnly: true
       volumes:
         - name: wordpress-file
           persistentVolumeClaim:
               claimName: efs-pvc
+          

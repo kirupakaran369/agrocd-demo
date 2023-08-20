@@ -33,7 +33,7 @@ spec:
             - name: WORDPRESS_DB_HOST
               valueFrom:
                 secretKeyRef:
-                  name: mysql-secret
+                  name: mysql-secert
                   key: dbhost
             - name: WORDPRESS_DB_PORT
               value: "3306"
@@ -42,7 +42,7 @@ spec:
             - name: WORDPRESS_DB_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: mysql-secret
+                  name: mysql-secert
                   key: dbpassword
             - name: WORDPRESS_DB_NAME
               value: wordpress

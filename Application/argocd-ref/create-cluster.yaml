@@ -162,3 +162,28 @@ managedNodeGroups:
         xRay: true
     subnets:
       - subnet-  ## need to change public subnet 
+
+  ###install required packages##
+
+#   echo -n "admin123" | base64
+
+# #install required packages
+# helm upgrade --install aws-efs-csi-driver --namespace kube-system aws-efs-csi-driver/aws-efs-csi-driver
+
+# helm repo add eks https://aws.github.io/eks-charts
+
+# helm repo update eks
+
+# helm install aws-load-balancer-controller eks/aws-load-balancer-controller \
+#   -n kube-system \
+#   --set clusterName=common-cluster \
+#   --set serviceAccount.create=false \
+#   --set serviceAccount.name=aws-load-balancer-controller
+
+##need to install argocd 
+
+## ref argocd-ref folder to deploy ingress and services for https and git connection for secerts
+
+###https://docs.aws.amazon.com/systems-manager/latest/userguide/integrating_csi_driver.html is document used to install secerts (ssm-parameter), add ssm full access to the nodes
+
+##{"host":"deleteme.czacpbvgfcja.eu-west-1.rds.amazonaws.com","password": "admin"}

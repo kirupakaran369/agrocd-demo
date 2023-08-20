@@ -34,7 +34,7 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: mysql-secret
-                  key: host
+                  key: dbhost
             - name: WORDPRESS_DB_PORT
               value: "3306"
             - name: WORDPRESS_DB_USER
@@ -43,7 +43,7 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: mysql-secret
-                  key: password
+                  key: dbpassword
             - name: WORDPRESS_DB_NAME
               value: wordpress
           livenessProbe:

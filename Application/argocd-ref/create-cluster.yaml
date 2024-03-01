@@ -196,3 +196,20 @@ managedNodeGroups:
 #       username: admin
 
 # edit and save it
+
+# Steps:
+
+1. Run the cluster config file and replace the required values
+
+2. # kubectl edit cm aws-auth -n kube-system 
+
+#     - groups:
+#       - system:masters
+#       rolearn: arn:aws:iam::
+#       username: admin
+
+2. INstall argocd 
+
+  2.1 Need to create one service for https -- please refer /argocd-ref/argocd-service.yaml
+
+  2.2 Need to create ingress for argocd -- please argocd-ref/argocd-ingress.yaml

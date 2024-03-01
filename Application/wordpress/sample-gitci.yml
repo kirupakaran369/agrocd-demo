@@ -1,0 +1,49 @@
+image: maven:3-jdk-8
+before_script:
+  - echo "Install AWS CLI and Zip"
+  - apt-get update && apt-get install awscli zip rsync python -y
+  - aws --version
+
+variables:
+  CODEDEPLOY_TIMEOUT: 120 # Time in Second
+  CODEDEPLOY_CONFIGNAME: CodeDeployDefault.AllAtOnce
+  CODEDEPLOY_BUCKETNAME: 
+
+
+stages:
+  - deploy1
+
+Prod:
+  stage: deploy1
+  variables:
+    CODEDEPLOY_APPNAME: 
+    CODEDEPLOY_GROUPNAME: -deploymentgroup
+    CODEDEPLOY_BUCKETKEY: codedeploy/$CI_PROJECT_PATH_SLUG.zip
+
+  script:
+    # Build deployment package
+    - export AWS_DEFAULT_REGION=$AWS_REGION
+    - CHECK_BRANCH=$(git rev-parse --abbrev-ref HEAD)
+    - echo "$CHECK_BRANCH"
+    - mkdir /code
+    - cp -R ./files /code
+    - cp -R ./scripts /code
+    - cp appspec.yml /code
+    - cd /code
+    - zip -r $CI_PROJECT_PATH_SLUG.zip *
+
+    # Copy deployment package over to s3 bucket
+    - aws s3 cp $CI_PROJECT_PATH_SLUG.zip s3://$CODEDEPLOY_BUCKETNAME/$CODEDEPLOY_BUCKETKEY
+    - rm $CI_PROJECT_PATH_SLUG.zip
+    # Get eTag
+    - ETAG=$(aws s3api head-object --bucket $CODEDEPLOY_BUCKETNAME --key $CODEDEPLOY_BUCKETKEY --query ETag --output text)
+    # Create Deployment
+    - DeploymentId=$(aws deploy create-deployment --application-name $CODEDEPLOY_APPNAME   --deployment-config-name  $CODEDEPLOY_CONFIGNAME  --deployment-group-name $CODEDEPLOY_GROUPNAME --s3-location bucket=$CODEDEPLOY_BUCKETNAME,bundleType=zip,key=$CODEDEPLOY_BUCKETKEY,eTag=$ETAG | python -c "import json,sys;obj=json.load(sys.stdin);print obj['deploymentId'];" )
+    - echo "DeploymentID - $DeploymentId"
+
+    - while true; do CurrentStatus=$(aws deploy get-deployment --deployment-id $DeploymentId --query "deploymentInfo.status" --output text); echo "Current Status - $CurrentStatus"; if [ "$CurrentStatus" == 'Succeeded' ]; then break; elif [ "$CurrentStatus" == 'Failed' ]; then Failure=1; break; elif [ "$CurrentStatus" == 'Stopped' ]; then Failure=1; break; else sleep 10; fi; done
+    # Report Errors
+    - if [[ -v Failure ]]; then echo $(aws deploy get-deployment --deployment-id $DeploymentId --query "deploymentInfo.errorInformation.message" --output text); exit 1; fi
+  only:
+    - master
+  when: manual
